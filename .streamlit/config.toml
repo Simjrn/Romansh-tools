@@ -6,5 +6,6 @@ primaryColor = "purple"
 backgroundColor = "black"
 textColor = "white"
 base = "dark"
+secondaryBackgroundColor = "green"
 [theme.sidebar]
 backgroundColor = "brown"
