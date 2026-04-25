@@ -13,3 +13,6 @@ Where is my bread?,Nua è mes paun?
 Do you have a house?,Has ti ina chasa?
 Do you want to eat sauerkraut?,Vuls ti mangiar crut asch?
 I have a television,Jau hai in televisiun
+I want a dog,Jau vi in chaun
+You want a pet,Ti vuls in animal da chasa
+The shopping trolley is there,Il tgaret da cumischungs è qua
