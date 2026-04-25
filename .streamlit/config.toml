@@ -3,5 +3,5 @@ showErrorDetails = "none"
 
 [theme]
 primaryColor = "purple"
-[them.sidebar]
+[theme.sidebar]
 backgroundColor = "brown"
