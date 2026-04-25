@@ -3,5 +3,6 @@ showErrorDetails = "none"
 
 [theme]
 primaryColor = "purple"
+backgroundColor = "black"
 [theme.sidebar]
 backgroundColor = "brown"
