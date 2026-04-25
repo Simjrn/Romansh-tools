@@ -140,7 +140,7 @@ elif page == "Word shuffle":
             if sorted_items == se:
                 st.balloons()
             else:
-                st.error(f"No, the correct answer was '{se}'")
+                st.error(f"No, the correct answer was '{se.join()}'")
     get_sentence()
     st.button("Next", type="tertiary")
   
