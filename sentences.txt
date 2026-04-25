@@ -1,0 +1,15 @@
+Hello Simon,Allegra Simon
+How are you?,Co vai?
+Do you have a cat?,Has ti in giat?
+Do you want to go now?,Vuls ti ir ussa?
+I want a hot chocolate,Jau vi ina tschigulatta chauda
+My guinea pig is small,Mes portg da mar è pitschen
+I am a girl,Jau sun ina matta
+I am a boy,Jau sun in mat
+Where is the bed?,Nua è il letg?
+I want to sleep now,Jau vi durmir ussa
+I speak Romansh and German,Jau discur rumantsch e tudestg
+Where is my bread?,Nua è mes paun?
+Do you have a house?,Has ti ina chasa?
+Do you want to eat sauerkraut?,Vuls ti mangiar crut asch?
+I have a television,Jau hai in televisiun
