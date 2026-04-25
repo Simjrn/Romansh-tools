@@ -4,5 +4,6 @@ showErrorDetails = "none"
 [theme]
 primaryColor = "purple"
 backgroundColor = "black"
+textColor = "white"
 [theme.sidebar]
 backgroundColor = "brown"
