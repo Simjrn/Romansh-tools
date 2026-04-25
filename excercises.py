@@ -125,6 +125,7 @@ elif page == "Word shuffle":
 
     item = item.split(",")
     trans = item[0]
+    rom = item[1]
     st.header(trans)
     sentence = item[1].split()
     se = sentence.copy()
@@ -140,7 +141,7 @@ elif page == "Word shuffle":
             if sorted_items == se:
                 st.balloons()
             else:
-                st.error(f"No, the correct answer was '{se.join(" ")}'")
+                st.error(f"No, the correct answer was '{rom}'")
     get_sentence()
     st.button("Next", type="tertiary")
   
