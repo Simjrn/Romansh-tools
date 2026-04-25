@@ -1,3 +1,2 @@
 streamlit
-random
 streamlit-sortables
