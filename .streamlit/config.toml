@@ -3,4 +3,4 @@ showErrorDetails = "none"
 
 [theme]
 primaryColor = "purple"
-backGroundColor = "black"
+backgroundColor = "black"
