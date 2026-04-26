@@ -19,5 +19,5 @@ if st.button("submit"):
     else:
         with open(file_path, "wb") as f:
             pickle.dump(edited_df, f)
-    st.write("Sentences submitted!")
+    st.write("Sentences submitted! You can now clear the table and submit some more sentences, or leave the website")
     df = ""
