@@ -29,4 +29,4 @@ with cols[0]:
 
 with cols[1]:
     # Level calculation using the points value from the dictionary
-    st.metric("Level", f"{data['points'] // 100}")
+    st.metric("Level", f"{data['points'] // 300}")
