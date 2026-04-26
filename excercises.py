@@ -1,6 +1,33 @@
 import streamlit as st
 import random
 from streamlit_sortables import sort_items
+import pickle
+
+
+try:
+    with open("points.pkl", "rb") as f:
+        data = pickle.load(f)
+except (FileNotFoundError, EOFError):
+    data = {"points": 0}
+    with open("points.pkl", "wb") as f:
+        pickle.dump(data, f)
+
+
+
+
+
+from pathlib import Path
+
+def add_points(amount):
+    file_name = "points.pkl"
+    if Path(file_name).is_file():
+        with open(file_name, "rb") as f:
+            data = pickle.load(f)
+    data["points"] += amount
+    st.toast(f":green[+ {amount}!]")
+    with open(file_name, "wb") as f:
+        pickle.dump(data, f)
+
 
 page = st.sidebar.radio(
     "Choose which activity:",
@@ -40,6 +67,7 @@ if page == "Cloze deletions":
         if submit_button:
             if answer == random_str.replace('?', '').replace('.',''):
                 st.balloons()
+                add_points(15)
             else:
                 st.error(f"No, the correct answer was '{random_str}'")   
     get_answer()
@@ -73,6 +101,7 @@ elif page == "Verb conjugation exercises":
                         if button:
                             if answer == sentence.split()[1]:
                                 st.balloons()
+                                add_points(10)
                             else:
                                 st.error(f"Incorrect. The correct answer was '{sentence.split()[1]}'")
                     get_conj()
@@ -100,6 +129,7 @@ elif page == "Verb conjugation exercises":
                         if button:
                             if answer == sentence.split()[1]+' '+sentence.split()[2]:
                                 st.balloons()
+                                add_points(10)
                             else:
                                 st.error(f"Incorrect. The correct answer was '{sentence.split()[1]+' '+sentence.split()[2]}'")
                     get_conj()
@@ -140,6 +170,7 @@ elif page == "Word shuffle":
         if button:
             if sorted_items == se:
                 st.balloons()
+                add_points(10)
             else:
                 st.error(f"No, the correct answer was '{rom}'")
     get_sentence()
