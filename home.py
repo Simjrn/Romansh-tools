@@ -1,7 +1,10 @@
 import streamlit as st
 import pickle
+from streamlit_extras.resizable_columns import resizable_columns
+
 st.title("Welcome!")
 
+# 1. LOAD DATA: Try to open the file once. If it fails, create default data.
 try:
     with open("points.pkl", "rb") as f:
         data = pickle.load(f)
@@ -10,20 +13,20 @@ except (FileNotFoundError, EOFError):
     with open("points.pkl", "wb") as f:
         pickle.dump(data, f)
 
-# Now check for specific content
-with open("points.pkl", "rb") as f:
-    data = pickle.load(f)
-    if "points" in data:
-        st.write(f"Existing score: {data['points']}")
-        
+# 2. DISPLAY SCORE: Use the dictionary 'data' to access 'points'
+if "points" in data:
+    st.write(f"Existing score: {data['points']}")
 
-
-from streamlit_extras.resizable_columns import *
-
-"""Resizable columns with borders."""
 st.write("### About you")
-cols = resizable_columns(2, border=True, key="data")
+
+# 3. LAYOUT: Using resizable columns
+# Note: 'resizable_columns' returns a list of column objects
+cols = resizable_columns(2, border=True, key="layout_cols") 
+
 with cols[0]:
-    st.metric("points", f"{data['points']}")
+    # Always use data['points'] because 'points' itself isn't a variable
+    st.metric("Points", f"{data['points']}")
+
 with cols[1]:
-    st.metric("Level", f"{data['points']//100}")
+    # Level calculation using the points value from the dictionary
+    st.metric("Level", f"{data['points'] // 100}")
