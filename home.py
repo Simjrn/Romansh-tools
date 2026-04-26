@@ -1,4 +1,5 @@
 import streamlit as st
+import webbrowser 
 
 st.title("Welcome!")
 
@@ -25,7 +26,11 @@ selected = card_selector(
     key="demo_basic",
 )
 if selected is not None:
-    st.write(f"You picked option **{selected}**")
+    if selected == "0":
+        webbrowser.open("activities")
+    elif selected == "1":
+        webbrowser.open("contribute")
+        
 
 
 one, two = st.columns(2)
