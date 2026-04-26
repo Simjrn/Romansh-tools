@@ -27,9 +27,9 @@ selected = card_selector(
 if selected is not None:
     st.write(selected)
     if selected == 0:
-        st.switch_page("activities")
+        st.switch_page("pages/activities")
     elif selected == 1:
-        st.switch_page("contribute")
+        st.switch_page("pages/contribute")
 
 
 
