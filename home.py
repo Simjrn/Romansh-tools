@@ -15,6 +15,7 @@ with open("points.pkl", "rb") as f:
     data = pickle.load(f)
     if "points" in data:
         st.write(f"Existing score: {data['points']}")
+        
 
 
 from streamlit_extras.resizable_columns import *
@@ -23,6 +24,6 @@ from streamlit_extras.resizable_columns import *
 st.write("### About you")
 cols = resizable_columns(2, border=True, key="data")
 with cols[0]:
-    st.metric("points", f"{data[points]}")
+    st.metric("points", f"{data['points']}")
 with cols[1]:
-    st.metric("Level", f"{data[points]//100}")
+    st.metric("Level", f"{data['points']//100}")
