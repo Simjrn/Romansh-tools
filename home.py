@@ -56,7 +56,6 @@ except:
     if st.button("Setup Profile"):
         create_account()
     st.info("Please create an account to continue.")
-    st.stop() # Stop execution until they have a profile
 
 # --- UI DISPLAY ---
 st.write(f"Existing score: {points_data['points']}")
