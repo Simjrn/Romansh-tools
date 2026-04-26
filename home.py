@@ -26,5 +26,3 @@ with cols[0]:
     st.metric("points", f"{data[points]}")
 with cols[1]:
     st.metric("Level", f"{data[points]//100}")
-    st.metric("Uptime", "99.9%", "+0.1%")
-
