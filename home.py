@@ -1,69 +1,62 @@
 import streamlit as st
 import pickle
-from streamlit_extras.resizable_columns import resizable_columns
 from streamlit_extras.steps import steps
 
-# --- DIALOG DEFINITION ---
+# 1. Initialize a state to track if the dialog should be visible
+if "show_account_dialog" not in st.session_state:
+    st.session_state.show_account_dialog = False
+
 @st.dialog("Create account")
-def create_account():
+def create_account_dialog():
+    # We use a separate key for steps inside the dialog 
+    # to ensure it stays in sync with the session
     left, right = st.columns((1, 3))
     
     with left:
-        s = steps(["Name", "Colour", "Confirmation"], icons=range(1, 4), key="steps_ui")
+        # 'steps' component can sometimes be finicky in dialogs. 
+        # A simpler way is to use a session_state variable for the step index:
+        if "step_index" not in st.session_state:
+            st.session_state.step_index = 0
+        
+        # Display icons/labels based on current index
+        st.write(f"Step {st.session_state.step_index + 1} of 3")
 
     with right:
-        # Initialize variables in session state so they always exist
-        if "temp_name" not in st.session_state: st.session_state.temp_name = ""
-        if "temp_colour" not in st.session_state: st.session_state.temp_colour = "Blue"
-
-        with s[0]:
-            st.session_state.temp_name = st.text_input("Your name", value=st.session_state.temp_name)
-            if st.button("Next", key="n1"): s.next()
-
-        with s[1]:
-            st.session_state.temp_colour = st.selectbox("Colour", ["Blue", "Red", "Green"], index=0)
-            c1, c2 = st.columns(2)
-            with c1: 
-                if st.button("Back", key="b1"): s.previous()
-            with c2: 
-                if st.button("Next", key="n2"): s.next()
-
-        with s[2]:
-            st.success("All done!")
-            if st.button("Save & Start"):
-                # Save to file and refresh
-                profile = {"name": st.session_state.temp_name, "colour": st.session_state.temp_colour}
-                with open("profile.pkl", "wb") as f:
-                    pickle.dump(profile, f)
+        if st.session_state.step_index == 0:
+            st.session_state.name = st.text_input("Your name", value=st.session_state.get("name", ""))
+            if st.button("Next"):
+                st.session_state.step_index = 1
                 st.rerun()
 
-st.title("Welcome!")
+        elif st.session_state.step_index == 1:
+            st.session_state.colour = st.selectbox("Colour", ["Blue", "Red", "Green"])
+            if st.button("Back"):
+                st.session_state.step_index = 0
+                st.rerun()
+            if st.button("Next"):
+                st.session_state.step_index = 2
+                st.rerun()
 
-# --- LOAD POINTS ---
-try:
-    with open("points.pkl", "rb") as f:
-        points_data = pickle.load(f)
-except:
-    points_data = {"points": 0}
+        elif st.session_state.step_index == 2:
+            st.success("All set!")
+            if st.button("Finish"):
+                profile = {"name": st.session_state.name, "colour": st.session_state.colour}
+                with open("profile.pkl", "wb") as f:
+                    pickle.dump(profile, f)
+                
+                # Close the dialog by resetting state and rerunning
+                st.session_state.show_account_dialog = False
+                st.rerun()
 
-# --- LOAD PROFILE ---
+# --- MAIN APP LOGIC ---
 try:
     with open("profile.pkl", "rb") as f:
-        profile_data = pickle.load(f)
-    st.write(f"Hello, {profile_data['name']}!")
-except:
-    # If no profile exists, trigger the dialog
-    if st.button("Setup Profile"):
-        create_account()
-    st.info("Please create an account to continue.")
-    st.stop() # Stop execution until they have a profile
+        profile = pickle.load(f)
+    st.write(f"Welcome back, {profile['name']}!")
+except (FileNotFoundError, EOFError):
+    # If file doesn't exist, set the flag to show dialog
+    st.session_state.show_account_dialog = True
 
-# --- UI DISPLAY ---
-st.write(f"Existing score: {points_data['points']}")
-cols = resizable_columns(2, border=True, key="layout_cols") 
-
-with cols[0]:
-    st.metric("Points", f"{points_data['points']}")
-with cols[1]:
-    st.metric("Level", f"{points_data['points'] // 300}")
-
+# Trigger the dialog if the flag is True
+if st.session_state.show_account_dialog:
+    create_account_dialog()
