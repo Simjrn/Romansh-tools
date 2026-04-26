@@ -2,6 +2,8 @@ import streamlit as st
 import random
 from streamlit_sortables import sort_items
 
+st.sidebar.write("💡:blue[Top tip: Add words you don't know to an SRS flashcard system]")
+
 page = st.sidebar.radio(
     "Choose which activity:",
     ("Cloze deletions", "Verb conjugation exercises", "Word shuffle")
