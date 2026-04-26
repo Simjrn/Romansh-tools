@@ -63,7 +63,7 @@ if page == "Cloze deletions":
     @st.fragment
     def get_answer():
         answer = st.text_input("Input your answer: ")
-        submit_button = st.button(label='Submit', shortcut='Ctrl+Shift+S)
+        submit_button = st.button(label='Submit', shortcut='Ctrl+Shift+S')
         if submit_button:
             if answer == random_str.replace('?', '').replace('.',''):
                 st.balloons()
