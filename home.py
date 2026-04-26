@@ -28,7 +28,13 @@ selected = card_selector(
 if selected is not None:
     st.write(selected)
     if selected == 0:
-        webbrowser.open("activities")
+        webbrowser.open("https://romansh-tools.streamlit.app/activities")
     elif selected == 1:
-        webbrowser.open("contribute")
+        webbrowser.open("https://romansh-tools.streamlit.app/contribute")
+
+
+
+
+
+
         
