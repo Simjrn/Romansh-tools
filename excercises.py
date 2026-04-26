@@ -1,8 +1,6 @@
 import streamlit as st
 import random
 from streamlit_sortables import sort_items
-from streamlit_extras.radial_menu import *
-        
 
 page = st.sidebar.radio(
     "Choose which activity:",
