@@ -5,6 +5,12 @@ st.title("Welcome!")
 
 from streamlit_extras.card_selector import *
 
+def nav_to(url):
+    nav_script = """
+        <meta http-equiv="refresh" content="0; url='%s'">
+    """ % (url)
+    st.write(nav_script, unsafe_allow_html=True)
+
 selected = card_selector(
     [
         dict(
@@ -28,9 +34,9 @@ selected = card_selector(
 if selected is not None:
     st.write(selected)
     if selected == 0:
-        webbrowser.open_new_tab("https://romansh-tools.streamlit.app/activities")
+        nav_to("https://romansh-tools.streamlit.app/activities")
     elif selected == 1:
-        webbrowser.open_new_tab("https://romansh-tools.streamlit.app/contribute")
+        nav_to("https://romansh-tools.streamlit.app/contribute")
 
 
 
