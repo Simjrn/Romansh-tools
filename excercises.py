@@ -1,6 +1,23 @@
 import streamlit as st
 import random
 from streamlit_sortables import sort_items
+from streamlit_extras.radial_menu import *
+import webbrowser
+
+with st.sidebar:
+    result = radial_menu(
+        options={
+            "home": "🏠",
+            "excercises": "📖",
+            "contribute": "🎁"
+        },
+        key="demo_menu",
+    )
+    if result == "home":
+        webbrowser.open("https://romansh-tools.streamlit.app/")
+    elif result == "excercises":
+        webbrowser.open("https://romansh-tools.streamlit.app/activities")
+        
 
 page = st.sidebar.radio(
     "Choose which activity:",
