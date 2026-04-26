@@ -1,5 +1,4 @@
 import streamlit as st
-import webbrowser 
 
 st.title("Welcome!")
 
@@ -28,9 +27,9 @@ selected = card_selector(
 if selected is not None:
     st.write(selected)
     if selected == 0:
-        webbrowser.open("https://romansh-tools.streamlit.app/activities")
+        st.switch_page("https://romansh-tools.streamlit.app/activities")
     elif selected == 1:
-        webbrowser.open("https://romansh-tools.streamlit.app/contribute")
+        st.switch_page("https://romansh-tools.streamlit.app/contribute")
 
 
 
