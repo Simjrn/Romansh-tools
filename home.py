@@ -27,9 +27,9 @@ selected = card_selector(
 )
 if selected is not None:
     st.write(selected)
-    if selected == "0":
+    if selected == 0:
         webbrowser.open("activities")
-    elif selected == "1":
+    elif selected == 1:
         webbrowser.open("contribute")
         
 
