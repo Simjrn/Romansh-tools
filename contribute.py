@@ -9,7 +9,6 @@ df = pd.DataFrame(
     ]
 )
 edited_df = st.data_editor(df, num_rows="dynamic")
-st.write(edited_df)
 
 if st.button("submit"):
     file_path = "sentences.pkl"
