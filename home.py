@@ -16,12 +16,12 @@ def create_account():
 
     with right:
         with s[0]:
-            st.text_input("Your name", key="name_input")
+            name = st.text_input("Your name", key="name_input")
             if st.button("Next", key="vn_next_0"):
                 s.next()
 
         with s[1]:
-            st.selectbox("Colour", ["Blue", "Red", "Green], key="colour_select")
+            colour = st.selectbox("Colour", ["Blue", "Red", "Green], key="colour_select")
             with st.container(horizontal=True):
                 if st.button("Back", key="vn_back_1"):
                    s.previous()
@@ -30,6 +30,7 @@ def create_account():
 
         with s[2]:
             st.success("All done! You're all set.")
+   return {"name": name, "colour": colour}
             
 
 
@@ -60,3 +61,16 @@ with cols[0]:
 with cols[1]:
     # Level calculation using the points value from the dictionary
     st.metric("Level", f"{data['points'] // 300}")
+
+
+try:
+    with open("profile.pkl", "rb") as f:
+        data = pickle.load(f)
+except (FileNotFoundError, EOFError):
+    data = create_account()
+    with open("profile.pkl", "wb") as f:
+        pickle.dump(data, f)
+
+# 2. DISPLAY SCORE: Use the dictionary 'data' to access 'points'
+if "points" in data:
+    st.write(f"Existing score: {data['points']}")
