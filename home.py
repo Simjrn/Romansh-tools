@@ -25,7 +25,7 @@ selected = card_selector(
     key="demo_basic",
 )
 if selected is not None:
-    st.write(f"You picked option **{selected}**
+    st.write(f"You picked option **{selected}**")
 
 
 one, two = st.columns(2)
