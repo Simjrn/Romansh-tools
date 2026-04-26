@@ -1,7 +1,7 @@
 import streamlit as st
 import pickle
 from streamlit_extras.resizable_columns import resizable_columns
-
+from streamlit_extras.steps import *
 
 @st.dialog("Create account")
 def create_account():
