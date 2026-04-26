@@ -14,7 +14,7 @@ with st.sidebar:
         key="demo_menu",
     )
     if result == "home":
-        webbrowser.open("https://romansh-tools.streamlit.app/")
+        webbrowser.open("https://romansh-tools.streamlit.app/Home")
     elif result == "excercises":
         webbrowser.open("https://romansh-tools.streamlit.app/activities")
         
