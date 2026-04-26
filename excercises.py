@@ -100,7 +100,6 @@ elif page == "Verb conjugation exercises":
                         if button:
                             if answer == sentence.split()[1]+' '+sentence.split()[2]:
                                 st.balloons()
-                                add_points(10)
                             else:
                                 st.error(f"Incorrect. The correct answer was '{sentence.split()[1]+' '+sentence.split()[2]}'")
                     get_conj()
@@ -141,7 +140,6 @@ elif page == "Word shuffle":
         if button:
             if sorted_items == se:
                 st.balloons()
-                add_points(10)
             else:
                 st.error(f"No, the correct answer was '{rom}'")
     get_sentence()
