@@ -7,14 +7,14 @@ from streamlit_extras.resizable_columns import resizable_columns
 def create_account():
    left, right = st.columns((1, 3))
 
-    with left:
+   with left:
         s = steps(
             ["Name", "Colour", "Confirmation"],
            icons=range(1, 4),
             key="demo_vn",
         )
 
-    with right:
+   with right:
         with s[0]:
             name = st.text_input("Your name", key="name_input")
             if st.button("Next", key="vn_next_0"):
