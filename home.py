@@ -26,6 +26,7 @@ selected = card_selector(
     key="demo_basic",
 )
 if selected is not None:
+    st.write(selected)
     if selected == "0":
         webbrowser.open("activities")
     elif selected == "1":
