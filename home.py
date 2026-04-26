@@ -27,9 +27,9 @@ selected = card_selector(
 if selected is not None:
     st.write(selected)
     if selected == 0:
-        st.switch_page("https://romansh-tools.streamlit.app/activities")
+        st.switch_page("/activities")
     elif selected == 1:
-        st.switch_page("https://romansh-tools.streamlit.app/contribute")
+        st.switch_page("/contribute")
 
 
 
