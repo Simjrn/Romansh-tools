@@ -1,4 +1,5 @@
 import streamlit as st
+import pickle
 st.title("Welcome!")
 try:
     with open("points.pkl", "rb") as f:
