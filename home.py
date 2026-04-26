@@ -21,7 +21,7 @@ def create_account():
                 s.next()
 
         with s[1]:
-            colour = st.selectbox("Colour", ["Blue", "Red", "Green], key="colour_select")
+            colour = st.selectbox("Colour", ["Blue", "Red", "Green"], key="colour_select")
             with st.container(horizontal=True):
                 if st.button("Back", key="vn_back_1"):
                    s.previous()
