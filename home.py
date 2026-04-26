@@ -17,9 +17,9 @@ selected = card_selector(
             description="Contribute sentences to be used in excercises",
         ),
         dict(
-            icon=":material/dns:",
-            title="On-Prem",
-            description="Host in your data center",
+            icon="🗨",
+            title="Chats",
+            description="Simulate conversations",
         ),
     ],
     key="demo_basic",
