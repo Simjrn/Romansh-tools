@@ -7,7 +7,7 @@ conn = st.connection('sentences_db', type='sql')
 with conn.session as s:
     s.execute(text('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);'))
     s.execute(text('''INSERT INTO sentences
-    VALUES ("Jau hai in giat", "I have a cat")
+    VALUES ("I have a cat", "Jau hai in giat)
     '''))
     s.commit()
 sentences = conn.query("SELECT * FROM sentences")
