@@ -12,13 +12,7 @@ edited_df = st.data_editor(df, num_rows="dynamic")
 st.text(edited_df)
 
 if st.button("submit"):
-    conn = st.connection("sentences_db", type="sql")
-    
-    with conn.session as s:
-        for index, row in edited_df.iterrows():
-            query = text('INSERT INTO sentences (romansh, english) VALUES (:rom, :eng)')
-            s.execute(query, params={"rom": row["Romansh"], "eng": row["English"]})
-        
-        s.commit()
-    
-    st.success(f"Saved {len(edited_df)} sentences!")
+    if st.button("submit"):
+    # This replaces the table with the current dataframe contents
+    edited_df.to_sql("sentences", st.connection("sentences_db", type="sql").engine, if_exists="append", index=False)
+    st.success("All rows saved!")
