@@ -7,9 +7,8 @@ df = pd.DataFrame([
     {"English": "My sentence in english", "Romansh": "My sentence translated into Romansh"}
 ])
 
-# Display the editor
+
 edited_df = st.data_editor(df, num_rows="dynamic")
-st.text(edited_df)
 
 if st.button("submit"):
     edited_df.to_sql("sentences", st.connection("sentences_db", type="sql").engine, if_exists="append", index=False)
