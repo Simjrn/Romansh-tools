@@ -26,7 +26,7 @@ page = st.sidebar.radio(
 if page == "Cloze deletions":
     line_count = 0
     with open('sentences.txt', 'r') as file:
-        for line in file:
+        for line in combined_list:
             line_count += 1
     line_with_sentence = random.randint(1, line_count)
 
