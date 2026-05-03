@@ -21,3 +21,4 @@ if st.button("submit"):
             VALUES ("{Romansh}", "{English}")
             '''))
             s.commit()
+    st.success("Saved!")
