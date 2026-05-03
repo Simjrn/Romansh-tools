@@ -6,7 +6,7 @@ from sqlalchemy import text
 conn = st.connection('sentences_db', type='sql', url="sqlite:///sentences.db")
 with conn.session as s:
     s.execute(text('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);'))
-    s.execute(text('DELETE FROM sentences))
+    s.execute(text('DELETE FROM sentences'))
     s.commit()
 sentences = conn.query("SELECT * FROM sentences", ttl=0)
 combined_list = sentences['romansh'] + ", " + sentences['english']
