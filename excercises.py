@@ -39,14 +39,14 @@ if page == "Cloze deletions":
                 item = line
 
     item = item.split(",")
-    sentence = item[1].split()
+    sentence = item[0].split()
     random_int = random.randint(0, len(sentence)-1)
     random_str = sentence[random_int]
-    question = item[1].replace(random_str, "____")
+    question = item[0].replace(random_str, "____")
     if "?" in random_str:
         question = question + '?'
     st.header(question)
-    st.caption(item[0])
+    st.caption(item[1])
 
     @st.fragment
     def get_answer():
