@@ -5,10 +5,10 @@ from streamlit_sortables import sort_items
 
 conn = st.connection('sentences_db', type='sql')
 with conn.session as s:
-    s.execute('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);')
-    s.execute('''INSERT INTO sentences
+    s.execute(text('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);'))
+    s.execute(text('''INSERT INTO sentences
     VALUES ("Jau hai in giat", "I have a cat")
-    ''')
+    '''))
     s.commit()
 sentences = conn.query("SELECT * FROM sentences")
 st.write(sentences)
