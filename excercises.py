@@ -6,12 +6,10 @@ from sqlalchemy import text
 conn = st.connection('sentences_db', type='sql', url="sqlite:///sentences.db")
 with conn.session as s:
     s.execute(text('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);'))
-    s.execute(text('DELETE FROM sentences WHERE romansh = "I have a cat";'))
+    s.execute(text('DELETE FROM sentences))
     s.commit()
 sentences = conn.query("SELECT * FROM sentences", ttl=0)
 combined_list = sentences['romansh'] + ", " + sentences['english']
-for row in combined_list:
-    st.write(row)
 
 st.sidebar.write("💡:green[Top tip: Add words you don't know to an SRS flashcard system]")
 
