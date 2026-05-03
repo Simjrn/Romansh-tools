@@ -11,5 +11,5 @@ df = pd.DataFrame([
 edited_df = st.data_editor(df, num_rows="dynamic")
 
 if st.button("submit"):
-    edited_df.to_sql("sentences", st.connection("sentences_db", type="sql").engine, if_exists="append", index=False)
+    edited_df.to_sql("sentences", st.connection("sentences_db", type="sql", url="sqlite:///sentences.db").engine, if_exists="append", index=False)
     st.success("All rows saved!")
