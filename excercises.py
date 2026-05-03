@@ -12,7 +12,8 @@ with conn.session as s:
     s.commit()
 sentences = conn.query("SELECT * FROM sentences")
 combined_list = sentences['romansh'] + ", " + sentences['english']
-st.text(combined_list)
+for row in combined_list:
+    st.write(row)
 
 st.sidebar.write("💡:green[Top tip: Add words you don't know to an SRS flashcard system]")
 
