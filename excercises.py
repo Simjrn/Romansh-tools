@@ -4,7 +4,7 @@ from streamlit_sortables import sort_items
 
 
 conn = st.connection('sentences_db', type='sql')
-with conn.sesson as s:
+with conn.session as s:
     s.execute('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);')
     s.execute('''INSERT INTO sentences
     VALUES ("Jau hai in giat", "I have a cat")
