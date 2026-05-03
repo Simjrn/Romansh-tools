@@ -2,18 +2,21 @@ import streamlit as st
 import pandas as pd
 from sqlalchemy import text
 
-# Initialize the DataFrame
-df = pd.DataFrame([
-    {"English": "My sentence in english", "Romansh": "My sentence translated into Romansh"}
-])
+conn = st.connection("sentences_db", type="sql", url="sqlite:///sentences.db")
 
+# 1. Ensure table exists (and use lowercase for safety)
+with conn.session as s:
+    s.execute(text('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);'))
+    s.commit()
 
+# 2. Match your DF columns to your SQL columns
+df = pd.DataFrame([{"romansh": "", "english": ""}])
 edited_df = st.data_editor(df, num_rows="dynamic")
 
 if st.button("submit"):
-    edited_df.to_sql("sentences", st.connection("sentences_db", type="sql", url="sqlite:///sentences.db").engine, if_exists="append", index=False)
-    st.success("All rows saved!")
-conn = st.connection("sentences_db", type="sql", url="sqlite:///sentences.db")
-with conn.session as s:
-    table = s.execute(text('SELECT * FROM sentences'))
-    st.text(table)
+    # Drop rows that are completely empty
+    clean_df = edited_df.dropna(how='all')
+    
+    # Save using the connection's engine
+    clean_df.to_sql("sentences", conn.engine, if_exists="append", index=False)
+    st.success(f"Saved {len(clean_df)} rows!")
