@@ -20,3 +20,4 @@ if st.button("submit"):
             s.execute(text(f'''INSERT INTO sentences
             VALUES ("{Romansh}", "{English}")
             '''))
+            s.commit()
