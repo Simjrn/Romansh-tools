@@ -16,4 +16,4 @@ if st.button("submit"):
 conn = st.connection("sentences_db", type="sql", url="sqlite:///sentences.db")
 with conn.session as s:
     table = s.execute(text('SELECT * FROM sentences'))
-    st.write(table)
+    st.text(table)
