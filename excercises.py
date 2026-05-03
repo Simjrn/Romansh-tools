@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 from streamlit_sortables import sort_items
-
+from sqlalchemy import text
 
 conn = st.connection('sentences_db', type='sql')
 with conn.session as s:
