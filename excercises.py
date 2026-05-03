@@ -3,14 +3,15 @@ import random
 from streamlit_sortables import sort_items
 from sqlalchemy import text
 
-conn = st.connection('sentences_db', type='sql')
+conn = st.connection('sentences_db', type='sql', url="sqlite:///sentences.db")
 with conn.session as s:
     s.execute(text('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);'))
-    s.execute(text('''INSERT INTO sentences
-    VALUES ("I have a cat", "Jau hai in giat")
-    '''))
+    # Note: Make sure your columns match! 
+    # Your code above puts English in the Romansh column.
     s.commit()
-sentences = conn.query("SELECT * FROM sentences")
+
+# Use ttl=0 to ensure you aren't seeing old cached results
+sentences = conn.query("SELECT * FROM sentences", ttl=0)
 combined_list = sentences['romansh'] + ", " + sentences['english']
 for row in combined_list:
     st.write(row)
