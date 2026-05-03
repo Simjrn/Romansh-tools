@@ -1,24 +1,25 @@
 import streamlit as st
 import pandas as pd
-import pickle
-import os
 from sqlalchemy import text
 
-df = pd.DataFrame(
-    [
-        {"English": "My sentence in english", "Romansh": "My sentence translated into Romansh"}
-    ]
-)
+# Initialize the DataFrame
+df = pd.DataFrame([
+    {"English": "My sentence in english", "Romansh": "My sentence translated into Romansh"}
+])
+
+# Display the editor
 edited_df = st.data_editor(df, num_rows="dynamic")
 
 if st.button("submit"):
-    for line in edited_df:
-        English = edited_df['English']
-        Romansh = edited_df['Romansh']
-        conn = st.connection("sentences_db", type="sql")
-        with conn.session as s:
-            s.execute(text(f'''INSERT INTO sentences
-            VALUES ("{Romansh}", "{English}")
-            '''))
-            s.commit()
-    st.success("Saved!")
+    conn = st.connection("sentences_db", type="sql")
+    
+    with conn.session as s:
+        # Loop through each ROW of the edited dataframe
+        for index, row in edited_df.iterrows():
+            # Use :variable syntax for security and to handle quotes/apostrophes
+            query = text('INSERT INTO sentences (romansh, english) VALUES (:rom, :eng)')
+            s.execute(query, params={"rom": row["Romansh"], "eng": row["English"]})
+        
+        s.commit()
+    
+    st.success(f"Saved {len(edited_df)} sentences!")
