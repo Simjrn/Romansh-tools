@@ -15,5 +15,5 @@ if st.button("submit"):
     st.success("All rows saved!")
 conn = st.connection("sentences_db", type="sql", url="sqlite:///sentences.db")
 with conn.session as s:
-    table = s.execute('SELECT * FROM sentences')
+    table = s.execute(text('SELECT * FROM sentences'))
     st.write(table)
