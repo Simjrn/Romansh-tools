@@ -2,6 +2,16 @@ import streamlit as st
 import random
 from streamlit_sortables import sort_items
 
+
+conn = st.connection('sentences_db', type='sql')
+with conn.sesson as s:
+    s.execute('CREATE TABLE IF NOT EXISTS sentences (romansh TEXT, english TEXT);')
+    s.execute('''INSERT INTO sentences
+    VALUES ("Jau hai in giat", "I have a cat")
+    ''')
+sentences = conn.query("SELECT * FROM sentences")
+st.write(sentences)
+
 st.sidebar.write("💡:green[Top tip: Add words you don't know to an SRS flashcard system]")
 
 page = st.sidebar.radio(
