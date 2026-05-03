@@ -11,7 +11,7 @@ with conn.session as s:
     '''))
     s.commit()
 sentences = conn.query("SELECT * FROM sentences")
-st.write(sentences)
+st.text(sentences)
 
 st.sidebar.write("💡:green[Top tip: Add words you don't know to an SRS flashcard system]")
 
