@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import os
+from sqlalchemy import text
 
 df = pd.DataFrame(
     [
@@ -11,13 +12,9 @@ df = pd.DataFrame(
 edited_df = st.data_editor(df, num_rows="dynamic")
 
 if st.button("submit"):
-    file_path = "sentences.pkl"
-
-    if os.path.exists(file_path):
-        with open(file_path, "ab") as f:
-            pickle.dump(edited_df, f)
-    else:
-        with open(file_path, "wb") as f:
-            pickle.dump(edited_df, f)
-    st.write("Sentences submitted! You can now clear the table and submit some more sentences, or leave the website")
-    df = ""
+    for line in edited_df:
+        English 
+        conn = st.connection("sentences_db", type="sql")
+        with conn.session as s:
+            s.execute(text('''INSERT INTO sentences
+            VALUES 
