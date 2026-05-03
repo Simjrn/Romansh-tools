@@ -14,9 +14,8 @@ df = pd.DataFrame([{"romansh": "", "english": ""}])
 edited_df = st.data_editor(df, num_rows="dynamic")
 
 if st.button("submit"):
-    # Drop rows that are completely empty
     clean_df = edited_df.dropna(how='all')
-    
-    # Save using the connection's engine
     clean_df.to_sql("sentences", conn.engine, if_exists="append", index=False)
     st.success(f"Saved {len(clean_df)} rows!")
+
+sentences = conn.query("SELECT * FROM sentences", ttl=0)
