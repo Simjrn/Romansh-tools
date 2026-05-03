@@ -12,7 +12,5 @@ edited_df = st.data_editor(df, num_rows="dynamic")
 st.text(edited_df)
 
 if st.button("submit"):
-    if st.button("submit"):
-    # This replaces the table with the current dataframe contents
     edited_df.to_sql("sentences", st.connection("sentences_db", type="sql").engine, if_exists="append", index=False)
     st.success("All rows saved!")
