@@ -13,3 +13,7 @@ edited_df = st.data_editor(df, num_rows="dynamic")
 if st.button("submit"):
     edited_df.to_sql("sentences", st.connection("sentences_db", type="sql", url="sqlite:///sentences.db").engine, if_exists="append", index=False)
     st.success("All rows saved!")
+conn = st.connection("sentences_db", type="sql", url="sqlite:///sentences.db")
+with conn.session as s:
+    table = s.execute('SELECT * FROM sentences')
+    st.write(table)
