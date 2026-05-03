@@ -33,7 +33,7 @@ if page == "Cloze deletions":
 
     line_count = 0
     with open('sentences.txt', 'r') as file:
-        for line in file:
+        for line in combined_list:
             line_count += 1
             if line_count == line_with_sentence:
                 item = line
