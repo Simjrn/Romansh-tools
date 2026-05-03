@@ -9,6 +9,7 @@ with conn.session as s:
     s.execute('''INSERT INTO sentences
     VALUES ("Jau hai in giat", "I have a cat")
     ''')
+    s.commit()
 sentences = conn.query("SELECT * FROM sentences")
 st.write(sentences)
 
