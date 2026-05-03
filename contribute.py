@@ -13,8 +13,10 @@ edited_df = st.data_editor(df, num_rows="dynamic")
 
 if st.button("submit"):
     for line in edited_df:
-        English 
+        English = edited_df['English']
+        Romansh = edited_df['Romansh']
         conn = st.connection("sentences_db", type="sql")
         with conn.session as s:
-            s.execute(text('''INSERT INTO sentences
-            VALUES 
+            s.execute(text(f'''INSERT INTO sentences
+            VALUES ("{Romansh}", "{English}")
+            '''))
