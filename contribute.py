@@ -9,8 +9,7 @@ df = pd.DataFrame([
 
 # Display the editor
 edited_df = st.data_editor(df, num_rows="dynamic")
-for line in edited_df:
-    st.text(line)
+st.text(edited_df)
 
 if st.button("submit"):
     conn = st.connection("sentences_db", type="sql")
